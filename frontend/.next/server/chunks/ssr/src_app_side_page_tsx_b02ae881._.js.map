@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/med/Desktop/Git/sutor/frontend/src/app/side/page.tsx"],"sourcesContent":["\"use client\"\n\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarFooter,\n  SidebarGroup,\n  SidebarHeader,\n} from \"@/components/ui/sidebar\"\nimport { SidebarProvider, SidebarTrigger } from \"@/components/ui/sidebar\"\nimport DashPage from \"../dash/page\"\n\n\nexport default function Side() {\n\n  return (\n    <>\n      <SidebarProvider  >\n\n\n        \n        <SidebarTrigger />\n        \n      </SidebarProvider>\n      \n    </>\n  )\n}"],"names":[],"mappings":";;;;AASA;AATA;;;AAae,SAAS;IAEtB,qBACE;kBACE,cAAA,8OAAC,mIAAA,CAAA,kBAAe;sBAId,cAAA,8OAAC,mIAAA,CAAA,iBAAc;;;;;;;;;;;AAMvB","debugId":null}}]
+}

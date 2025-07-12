@@ -1,0 +1,6 @@
+{
+  "/chat/page": "app/chat/page.js",
+  "/dash/page": "app/dash/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pdf/page": "app/pdf/page.js"
+}
