@@ -60,7 +60,7 @@ export default function Chat() {
   //     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
   //       method: 'POST',
   //       headers: {
-  //         'Authorization': 'Bearer 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', // Replace with your actual Groq API key
+  //         'Authorization': 'Bearer api_key', // Replace with your actual Groq API key
   //         'Content-Type': 'application/json',
   //       },
   //       body: JSON.stringify({
