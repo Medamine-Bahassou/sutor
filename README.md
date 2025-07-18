@@ -2,6 +2,8 @@
 
 Sutor is a full-stack web application that combines a powerful AI chat interface with PDF processing capabilities. It allows users to interact with an AI model, upload PDF documents, and have the content of the PDF be part of the conversation.
 
+![](./screenshots/demo.png)
+
 ## Features
 
 - **AI Chat:** A clean and intuitive chat interface for interacting with a large language model.
