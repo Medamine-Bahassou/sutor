@@ -45,7 +45,7 @@ export default function Pdf() {
           <Button
             onClick={openInOverleaf}
             type="button"
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition"
+            className="  cursor-pointer transition"
             >
             Edit with Overleaf
           </Button>
@@ -86,7 +86,7 @@ export default function Pdf() {
               width="100%"
               height="600px"
               title="LaTeX PDF Preview"
-              className="border border-gray-300 rounded-lg"
+              className="border   rounded-lg"
               onLoad={() => setLoading(false)}
             />
           )}

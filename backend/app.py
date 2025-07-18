@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from groq import Groq
 from dotenv import load_dotenv
 from flask_cors import CORS # Add this import
+from providers.groq import completion as groq_completion
 
 load_dotenv()
 
@@ -20,8 +21,19 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
+
+global memory
+memory = []
+
+
 @app.route('/chat', methods=['POST'])
 def chat():
+
+    SYSTEM = f"""
+    [SYSTEM]
+    Your mission is to generate a latex code with explication, generate one latex code in one block ```latex  [latex_here] ``` , also  some explication and analyze
+"""
+
     data = request.get_json()
     user_message = data.get('message')
     attachment_filename = data.get('attachment') # Now this is a filename
@@ -34,18 +46,23 @@ def chat():
     if converted_pdf_content:
         full_message = f"{user_message}\n\nAttachment:\n{converted_pdf_content}"
 
+    messages = [{"role": "system", "content": SYSTEM }]
+
+    for i in range(0, len(memory), 2):
+        messages.append({"role": "user", "content": memory[i]})
+        messages.append({"role": "assistant", "content": memory[i+1]})
+
+    # Add the current user message
+    messages.append({"role": "user", "content": full_message})
+
     try:
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": full_message,
-                }
-            ],
-            model="llama-3.3-70b-versatile",
-            stream=False,
-        )
-        response_content = chat_completion.choices[0].message.content
+        chat_completion = groq_completion(messages)
+        response_content = chat_completion
+        
+        # memory
+        memory.append(full_message)
+        memory.append(response_content)
+
         return jsonify({"response": response_content})
     except Exception as e:
         return jsonify({"error": str(e)}), 500

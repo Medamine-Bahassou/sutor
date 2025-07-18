@@ -4,6 +4,7 @@ import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import Navbar from "@/components/app-navbar";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,22 +28,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         {/* {children} */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
         <SidebarProvider>
           <AppSidebar />
           <main className="w-screen h-screen">
-            <header className="flex border-b items-center">
+            <header className="flex border-b items-center bg-card">
               <SidebarTrigger />
               <Navbar />
             </header>
             <div className="h-[calc(100vh-65px)] ">
-              {children}
+                
+                {children}
             </div>
           </main>
         </SidebarProvider>
+        </ThemeProvider>
+
       </body>
     </html>
   );

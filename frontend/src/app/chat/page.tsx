@@ -7,6 +7,7 @@ import { ArrowUp, Copy, Globe, LucideAArrowDown, Paperclip, Recycle, RefreshCcw 
 import { remark } from 'remark';
 import html from 'remark-html';
 import { useLatex } from "@/lib/LatexContext";
+import { ToolsDropdown } from '@/components/tools-dropdown';
 
 async function renderMarkdown(markdown: string) {
   const processedContent = await remark().use(html).process(markdown);
@@ -143,17 +144,17 @@ export default function Chat() {
         <div className="flex flex-col p-4  gap-6 w-full">
           {messages.map((message: Message, index: number) => (
             <div key={index} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={` flex flex-col gap-3 ${message.sender === "user" ? "   rounded-full max-w-2/3 px-5 py-3 bg-slate-200" : "w-full"} `}>
+              <div className={` flex flex-col gap-3 ${message.sender === "user" ? "   rounded-3xl max-w-2/3 px-5 py-3 bg-slate-100 dark:bg-card" : "w-full"} `}>
                 {message.sender === "user" ? (
                   <p>{message.text}</p>
                 ) : (
                   <div className="markdown-content" dangerouslySetInnerHTML={{ __html: message.htmlContent || "" }} />
                 )}
                 <div className={`${message.sender === "user" ? "   hidden" : "flex"}`}>
-                  <div className='hover:bg-slate-200 rounded-lg cursor-pointer p-2 text-xs '>
+                  <div className='hover:bg-slate-100 dark:hover:bg-card rounded-lg cursor-pointer p-2 text-xs '>
                     <Copy className='h-4'/>
                   </div>
-                  <div className='hover:bg-slate-200 rounded-lg cursor-pointer p-2 text-xs '>
+                  <div className='hover:bg-slate-100 dark:hover:bg-card rounded-lg cursor-pointer p-2 text-xs '>
                     <RefreshCcw className='h-4'/>
                   </div>
                 </div>
@@ -163,13 +164,13 @@ export default function Chat() {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full bg-white">
+      <div className="absolute bottom-0 left-0 w-full bg-card">
         <div className="flex justify-center items-center m-4 gap-4 ">
-          <div className='flex flex-col gap-2 min-h-16 w-full p-4 bg-slate-200 rounded-2xl'>
+          <div className='flex flex-col gap-2 min-h-16  w-full p-4 rounded-2xl border'>
             
             <textarea
               ref={textareaRef}
-              className="resize-none   outline-0  w-full pb-4"
+              className="resize-none outline-0 w-full pb-4 overflow-auto max-h-[500px]"
               placeholder="Type your message here..."
               rows={1}
               onKeyDown={(e) => {
@@ -178,13 +179,18 @@ export default function Chat() {
                   handleSendMessage();
                 }
               }}
+              onInput={(e) => {
+                const target = e.target as HTMLTextAreaElement;
+                target.style.height = 'auto'; // Reset height
+                target.style.height = `${Math.min(target.scrollHeight, 100)}px`; // Resize with cap
+              }}
             />
+
             {/* tools */}
             <div className='flex justify-between'>
 
               <div className='flex gap-4'>
-                <Button className='rounded-full' ><Paperclip /></Button>
-                <Button className='rounded-full'><Globe /></Button>
+                <ToolsDropdown/>
               </div>
               <div className=''>
                 <Button
