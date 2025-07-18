@@ -1,9 +1,7 @@
-# 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
-
 from groq import Groq
 
 client = Groq(
-    api_key="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",
+    api_key="api_key",
 )
 
 def completion(messages, model="llama-3.3-70b-versatile", stream=False):
