@@ -1,15 +1,17 @@
-# Sutor - Your AI-Powered Chat and PDF Assistant
+# Sutor - Your AI-Powered LaTeX Generator
 
-Sutor is a full-stack web application that combines a powerful AI chat interface with PDF processing capabilities. It allows users to interact with an AI model, upload PDF documents, and have the content of the PDF be part of the conversation.
+Sutor is a full-stack web application that allows you to chat with an AI to generate LaTeX code, visualize the generated LaTeX as a PDF, and seamlessly edit it with Overleaf. It also includes powerful PDF processing capabilities.
 
 ![](./screenshots/demo.png)
 
 ## Features
 
 - **AI Chat:** A clean and intuitive chat interface for interacting with a large language model.
-- **PDF Processing:** Upload PDF files to be converted into markdown format.
-- **Contextual Conversations:** The content of the uploaded PDF is seamlessly integrated into the chat, allowing the AI to answer questions and discuss the document's contents.
-- **LaTeX Rendering:** The application can render LaTeX code into a viewable PDF and allows for editing in Overleaf.
+- **AI-Powered LaTeX Generation:** Interact with an AI model to generate LaTeX code based on your conversations and requirements.
+- **LaTeX Visualization:** Instantly render generated LaTeX code into a viewable PDF within the application.
+- **Overleaf Integration:** Seamlessly open and edit your generated LaTeX projects directly in Overleaf for advanced editing and collaboration.
+- **PDF Processing:** Upload PDF files to be converted into markdown format, allowing the AI to incorporate their content into conversations.
+- **Contextual Conversations:** The content of uploaded PDFs is integrated into the chat, enabling the AI to answer questions and discuss document contents.
 
 ## Tech Stack
 
